@@ -8,6 +8,7 @@ namespace OdeToFood.Data
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetRestaurantByID(int restaurantID);
+        Restaurant Create(Restaurant newRestaurant);
         Restaurant Update(Restaurant updatedRestaurant);
         int Commit();
     }
@@ -39,6 +40,13 @@ namespace OdeToFood.Data
             return restaurants.SingleOrDefault(x => x.Id == restaurantID);
         }
 
+        public Restaurant Create(Restaurant newRestaurant)
+        {
+            var restaurant = newRestaurant;
+            restaurant.Id = restaurants.Count + 1;
+            restaurants.Add(restaurant);
+            return restaurant;
+        }
         public Restaurant Update(Restaurant updatedRestaurant)
         {
             var restaurant = restaurants.SingleOrDefault(x => x.Id == updatedRestaurant.Id);

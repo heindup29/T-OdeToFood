@@ -3,6 +3,14 @@
 @{
 }
 
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">
+        <h2 class="alert-heading">Info</h2>
+        <p>@Model.Message</p>
+    </div>
+}
+
 <h1>Editing @Model.Restaurant.Name</h1>
 
 <input type="hidden" asp-for="Restaurant.Id" />
