@@ -6,8 +6,10 @@ namespace OdeToFood.Data
 {
     public interface IRestaurantData
     {
-        IEnumerable<Restaurant> GetRestaurantsByName( string name);
+        IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetRestaurantByID(int restaurantID);
+        Restaurant Update(Restaurant updatedRestaurant);
+        int Commit();
     }
 
     public class InMemoryIrestaurantData : IRestaurantData
@@ -30,11 +32,28 @@ namespace OdeToFood.Data
             {
                 return restaurants.OrderBy(x => x.Name);
             }
-            return restaurants.Where(x => x.Name.Contains(name,System.StringComparison.OrdinalIgnoreCase)).OrderBy(x => x.Name);
+            return restaurants.Where(x => x.Name.Contains(name, System.StringComparison.OrdinalIgnoreCase)).OrderBy(x => x.Name);
         }
         public Restaurant GetRestaurantByID(int restaurantID)
         {
             return restaurants.SingleOrDefault(x => x.Id == restaurantID);
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(x => x.Id == updatedRestaurant.Id);
+            if (restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+            return restaurant;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }

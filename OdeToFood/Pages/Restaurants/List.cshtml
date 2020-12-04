@@ -4,7 +4,7 @@
 }
 
 <h1>Restaurants</h1>
-<form  method="get">
+<form method="get">
     <div class="input-group">
         <input type="search" class="form-control" asp-for="SearchTerm" />
         <div class="input-group-append">
@@ -14,7 +14,7 @@
 </form>
 <div>
     <table class="table">
-        @foreach(var restaurant in Model.Restaurants)
+        @foreach (var restaurant in Model.Restaurants)
         {
             <tr>
                 <td>@restaurant.Name</td>
@@ -23,6 +23,11 @@
                 <td>
                     <a asp-route-restaurantID="@restaurant.Id" asp-page="/Restaurants/Details" class="btn btn-outline-secondary">
                         Details
+                    </a>
+                </td>
+                <td>
+                    <a asp-route-restaurantID="@restaurant.Id" asp-page="/Restaurants/Edit" class="btn btn-outline-info">
+                        Edit
                     </a>
                 </td>
             </tr>

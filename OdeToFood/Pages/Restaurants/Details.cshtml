@@ -4,22 +4,25 @@
 }
 
 <h1>Editing @Model.Restaurant.Name</h1>
-<form method="post">
-    <input type="hidden" asp-for="Restaurant.Id" />
-    <div class="mb-4">
-        <label asp-for="Restaurant.Name"></label>
-        <input asp-for="Restaurant.Name" class="form-control" />
-    </div>
-    <div class="mb-4">
-        <label asp-for="Restaurant.Location"></label>
-        <input asp-for="Restaurant.Location" class="form-control" />
-    </div>
-    <div class="mb-4">
-        <label asp-for="Restaurant.Cuisine"></label>
-        <select asp-for="Restaurant.Cuisine" class="form-control"
-                asp-items="Model.Cuisines">
-        </select>
-    </div>
 
-    <a class="btn btn-outline-primary btn-sm" href="/Restautrants/List">Return to list view</a>
-</form>
+<input type="hidden" asp-for="Restaurant.Id" />
+<div class="mb-4">
+    <label asp-for="Restaurant.Name"></label>
+    <p>
+        @Model.Restaurant.Name
+    </p>
+</div>
+<div class="mb-4">
+    <label asp-for="Restaurant.Location"></label>
+    <p>
+        @Model.Restaurant.Location
+    </p>
+</div>
+<div class="mb-4">
+    <label asp-for="Restaurant.Cuisine"></label>
+    <p>
+        @Model.Restaurant.Cuisine
+    </p>
+</div>
+
+<a class="btn btn-outline-primary btn-sm" href="/Restaurants/List">Return to list view</a>
